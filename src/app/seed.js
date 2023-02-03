@@ -1,64 +1,51 @@
 export const seedData = [
     {
-        id: 1,
-        abbvTitle: 'Mon',
-        fullTitle: 'Monday',
-        events: [
-            { details: 'Get Groceries', edit: false },
-            { details: 'Carpool', edit: false }
-        ],
-        active: true
-    },
-    {
-        id: 2,
-        abbvTitle: 'Tue',
-        fullTitle: 'Tuesday',
-        events: [
-            { details: 'Yoga/Gym', edit: false }
-        ],
+        id: 0,
+        abbvTitle: 'ش',
+        fullTitle: 'شنبه',
+        events: [],
         active: false
     },
     {
+        id: 1,
+        abbvTitle: 'ی',
+        fullTitle: 'یکشنبه',
+        events: [],
+        active: false
+    },
+    {
+        id: 2,
+        abbvTitle: 'د',
+        fullTitle: 'دوشنبه',
+        events: [],
+        active: true
+    },
+    {
         id: 3,
-        abbvTitle: 'Wed',
-        fullTitle: 'Wednesday',
-        events: [
-            { details: 'Work social', edit: false }
-        ],
+        abbvTitle: 'س',
+        fullTitle: 'سه‌شنبه',
+        events: [],
         active: false
     },
     {
         id: 4,
-        abbvTitle: 'Thu',
-        fullTitle: 'Thursday',
+        abbvTitle: 'چ',
+        fullTitle: 'جهارشنبه',
         events: [],
         active: false
     },
     {
         id: 5,
-        abbvTitle: 'Fri',
-        fullTitle: 'Friday',
-        events: [
-            { details: 'Friday dinner/drinks', edit: false }
-        ],
+        abbvTitle: 'پ',
+        fullTitle: 'پنج‌شنبه',
+        events: [],
         active: false
     },
     {
         id: 6,
-        abbvTitle: 'Sat',
-        fullTitle: 'Saturday',
-        events: [
-            { details: 'Chill with the parents', edit: false }
-        ],
-        active: false
-    },
-    {
-        id: 7,
-        abbvTitle: 'Sun',
-        fullTitle: 'Sunday',
-        events: [
-            { details: 'Netflix/Chill', edit: false }
-        ],
+        abbvTitle: 'ج',
+        fullTitle: 'جمعه',
+        events: [],
         active: false
     }
 ]
