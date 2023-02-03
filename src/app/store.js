@@ -2,7 +2,19 @@ import {seedData} from "./seed.js";
 
 export const store = {
     state: {
-        seedData
+        seedData: seedData.map(function (day) {
+            if (localStorage.length <= 0) {
+                return day;
+            }
+
+            let item = localStorage.getItem(day.id);
+            if (item === null) {
+                return day;
+            }
+
+            day.events = JSON.parse(item).events;
+            return day;
+        }),
     },
     getActiveDay() {
         return this.state.seedData.find(day => day.active)
@@ -15,6 +27,7 @@ export const store = {
     submitEvent(eventDetail) {
         const day = this.getActiveDay();
         day.events.push({ "details": eventDetail, "edit": false })
+        this.storeDayObj(day);
     },
     editEvent(dayId, eventDetail) {
         this.resetEditOfAllEvents();
@@ -28,11 +41,13 @@ export const store = {
         const eventObj = this.getEventObj(dayObj, originalEventDetails);
         eventObj.details = newEventDetails;
         eventObj.edit = false;
+        this.storeDayObj(dayObj);
     },
     deleteEvent(dayId, eventDetails) {
         const dayObj = this.getDayObj(dayId);
         const index = dayObj.events.findIndex(e => e.details === eventDetails);
         dayObj.events.splice(index, 1);
+        this.storeDayObj(dayObj);
     },
     resetEditOfAllEvents () {
         this.state.seedData.map((dayObj) => {
@@ -40,6 +55,9 @@ export const store = {
                 event.edit = false;
             });
         });
+    },
+    storeDayObj(day) {
+        localStorage.setItem(day.id, JSON.stringify(day));
     },
     getDayObj: function (dayId) {
         return this.state.seedData.find(day => day.id === dayId);
