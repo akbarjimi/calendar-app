@@ -1,18 +1,26 @@
 <template>
-  <div id="app">
-    <CalendarWeek/>
-    <CalendarEntry/>
+  <div>
+    <div class="pull-left">
+      <CalendarSettings/>
+    </div>
+    <div id="app">
+      <CalendarWeek/>
+      <CalendarEntry/>
+    </div>
   </div>
 </template>
 
 <script>
 import CalendarWeek from './components/CalendarWeek.vue';
 import CalendarEntry from './components/CalendarEntry.vue';
+import CalendarSettings from "./components/CalendarSettings.vue";
+
 export default {
   name: 'App',
   components: {
     CalendarWeek,
-    CalendarEntry
+    CalendarEntry,
+    CalendarSettings,
   }
 }
 </script>
