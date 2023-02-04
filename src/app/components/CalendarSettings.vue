@@ -4,18 +4,14 @@
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
-          <p class="modal-card-title">Modal title</p>
+          <p class="modal-card-title">Settings</p>
           <button @click="closeSettingsModal()" class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
           <div class="control">
-            <label class="radio">
-              <input type="radio" name="lang" value="en-US" v-model="lang" :checked="chosenLang('en-US')">
-              English (US)
-            </label>
-            <label class="radio">
-              <input type="radio" name="lang" value="fa-IR" v-model="lang" :checked="chosenLang('fa-IR')">
-              Persian
+            <label class="radio" v-for="language in this.availableLanguages">
+              <input type="radio" name="language" :value="language" v-model="selectedLanguage" :checked="chosenLang(language)">
+              {{ language }}
             </label>
           </div>
         </section>
@@ -32,39 +28,35 @@
 </template>
 
 <script>
+
 export default {
   name: "CalendarSettings",
   data() {
     return {
-      lang: this.setLang(),
+      selectedLanguage: '',
     }
   },
-  methods: {
-    setLang() {
-      let settings = JSON.parse(localStorage.getItem("settings"));
-      return settings !== undefined ? settings.lang : '';
+  computed: {
+    availableLanguages() {
+      return [
+        'en', 'fa'
+      ];
     },
+  },
+  methods: {
     launchSettingsModal() {
-      let selector = document.querySelector("#modal");
-      selector.classList.add("is-active");
+      document.querySelector("#modal").classList.add("is-active");
     },
     closeSettingsModal() {
-      let selector = document.querySelector("#modal");
-      selector.classList.remove("is-active");
+      document.querySelector("#modal").classList.remove("is-active");
     },
     saveSettingsModal() {
-      localStorage.setItem("settings", JSON.stringify({
-        lang: this.lang
-      }))
+      localStorage.setItem("language", this.selectedLanguage)
       this.closeSettingsModal();
     },
-    chosenLang(lang) {
-      return this.lang === lang;
+    chosenLang(language) {
+      return this.selectedLanguage === language;
     },
   }
 }
 </script>
-
-<style scoped>
-
-</style>
