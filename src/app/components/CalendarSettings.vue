@@ -4,7 +4,7 @@
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
-          <p class="modal-card-title">Settings</p>
+          <p class="modal-card-title">{{ translate.settings }}</p>
           <button @click="closeSettingsModal()" class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
@@ -16,8 +16,8 @@
           </div>
         </section>
         <footer class="modal-card-foot">
-          <button @click="saveSettingsModal()" class="button is-success">Save changes</button>
-          <button @click="closeSettingsModal()" class="button">Cancel</button>
+          <button @click="saveSettingsModal()" class="button is-success">{{ translate.save_settings }}</button>
+          <button @click="closeSettingsModal()" class="button">{{ translate.cancel }}</button>
         </footer>
       </div>
     </div>
@@ -29,11 +29,13 @@
 
 <script>
 
+import {store} from "../store";
+
 export default {
   name: "CalendarSettings",
   data() {
     return {
-      selectedLanguage: '',
+      selectedLanguage: localStorage.getItem("language"),
     }
   },
   computed: {
@@ -42,6 +44,9 @@ export default {
         'en', 'fa'
       ];
     },
+    translate() {
+      return store.getActiveLang();
+    }
   },
   methods: {
     launchSettingsModal() {

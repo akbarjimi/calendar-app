@@ -21,6 +21,11 @@ export default {
       sharedState: store.state
     }
   },
+  computed: {
+    translate() {
+      return store.getActiveLang();
+    }
+  },
   components: {
     CalendarDay
   }

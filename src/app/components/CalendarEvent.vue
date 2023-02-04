@@ -34,6 +34,9 @@ export default {
       let randomColor = colors[Math.floor(Math.random() * colors.length)];
       return `background-color: ${randomColor}`;
     },
+    translate() {
+      return store.getActiveLang();
+    }
   },
   methods: {
     editEvent(dayId, eventDetails) {

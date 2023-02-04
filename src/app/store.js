@@ -15,6 +15,7 @@ export const store = {
             day.events = JSON.parse(item).events;
             return day;
         }),
+        languages: require("./lang")
     },
     getActiveDay() {
         return this.state.seedData.find(day => day.active)
@@ -64,5 +65,13 @@ export const store = {
     },
     getEventObj: function (dayObj, eventDetail) {
         return dayObj.events.find(e => e.details === eventDetail);
+    },
+    getActiveLang() {
+        let selectedLanguage = localStorage.getItem("language");
+        if (selectedLanguage === null) {
+            selectedLanguage = 'en';
+        }
+
+        return this.state.languages.lang[selectedLanguage];
     }
 }

@@ -3,15 +3,15 @@
     <div class="calendar-entry-note">
       <input type="text" placeholder="New Event" required v-model="inputEntry" />
       <p class="calendar-entry-day">
-        Day of event: <span class="bold">{{ titleOfActiveDay }}</span>
+        {{ translate.dayOfEvent }}: <span class="bold">{{ titleOfActiveDay }}</span>
       </p>
       <a
           class="button is-primary is-small is-outlined"
           @click="submitEvent(inputEntry)"
-      >Submit</a>
+      >{{ translate.submit }}</a>
     </div>
     <p style="color: red; font-size: 13px" v-if="error">
-      You must type something first!
+      {{ translate.error }}
     </p>
   </div>
 </template>
@@ -30,6 +30,9 @@ export default {
   computed: {
     titleOfActiveDay() {
       return store.getActiveDay().fullTitle;
+    },
+    translate() {
+      return store.getActiveLang();
     }
   },
   methods: {
