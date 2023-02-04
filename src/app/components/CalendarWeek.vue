@@ -2,7 +2,7 @@
   <div id="calendar-week" class="container">
     <div class="columns">
       <CalendarDay
-          v-for="day in sharedState.seedData"
+          v-for="day in sharedState.weekdays"
           :key="day.id"
           :day="day"
       ></CalendarDay>

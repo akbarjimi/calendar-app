@@ -2,7 +2,7 @@ import {seedData} from "./seed.js";
 
 export const store = {
     state: {
-        seedData: seedData.map(function (day) {
+        weekdays: seedData.map(function (day) {
             if (localStorage.length <= 0) {
                 return day;
             }
@@ -18,10 +18,10 @@ export const store = {
         languages: require("./lang")
     },
     getActiveDay() {
-        return this.state.seedData.find(day => day.active)
+        return this.state.weekdays.find(day => day.active)
     },
     setActiveDay(dayId) {
-        this.state.seedData.map(day => {
+        this.state.weekdays.map(day => {
             day.id === dayId ? day.active = true : day.active = false;
         })
     },
@@ -51,7 +51,7 @@ export const store = {
         this.storeDayObj(dayObj);
     },
     resetEditOfAllEvents () {
-        this.state.seedData.map((dayObj) => {
+        this.state.weekdays.map((dayObj) => {
             dayObj.events.map((event) => {
                 event.edit = false;
             });
@@ -61,7 +61,7 @@ export const store = {
         localStorage.setItem(day.id, JSON.stringify(day));
     },
     getDayObj: function (dayId) {
-        return this.state.seedData.find(day => day.id === dayId);
+        return this.state.weekdays.find(day => day.id === dayId);
     },
     getEventObj: function (dayObj, eventDetail) {
         return dayObj.events.find(e => e.details === eventDetail);
